@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# rc-telephony-event-explorer
+Explore RingCentral telephony session events live
 
-## Getting Started
+## Installation
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Clone the repo
+Open your terminal and run this command in the folder you want to install the app to. Where you choose install it doesn't really matter.
+```
+git clone https://github.com/DQGriffin/rc-telephony-event-explorer.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Install dependencies
+Run this command in the root of the project
+```
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Create .env file
+In the root of the project, create a file named '.env' (sans quotes) and populate it with your credentials
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+| Variable | Description | Notes |
+|----------|-------------|-------|
+| NEXT_PUBLIC_RC_SERVER_URL | RC platform server URL                              | Required |
+| ACCESS_TOKEN              | An access token for the account                     | Optional |
+| RC_CLIENT_ID              | The client ID of the app you're authing against     | Not required if ACCESS_TOKEN is set |
+| RC_CLIENT_SECRET          | The client secret of the app you're authing against | Not required if ACCESS_TOKEN is set |
+| RC_JWT                    | A JWT registered in the account you're monitoring   | Not required if ACCESS_TOKEN is set |
 
-## Learn More
+### Build the app
+Run this command in the root of the project
+```
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Run that bad boy
+Run this command and head over to http://127.0.0.1:3000
+```
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Usage
+The UI is aplit in three columns. The left-most column will populate with telephony session IDs as sessions come in. Selecting a session will populate the center column with events belonging to that telephony session. Clicking an event will populate a tree in the right-most column with the body of the event.
